@@ -86,7 +86,6 @@ We kiezen één uitbreiding:
 - Deadlines worden nagekomen.
 - Problemen worden op tijd besproken.
 - Iedereen houdt GitHub Projects up-to-date.
-- We helpen elkaar en respecteren elkaars werk.
 
 ## 📋 Scrum & samenwerking
 
@@ -107,8 +106,3 @@ Iedereen verzamelt eigen bewijsmateriaal voor het vaardighedenportfolio.
 5. [ ] Gezamenlijk ERD vaststellen.
 6. [ ] Beginnen met programmeren.
 
-## 📂 Inleverlocatie
-
-Itslearning → Content → Breda → Projecten → E3 Barroc Intens → Inlevermap
-
-**Belangrijk:** Niet alleen de applicatie telt, maar ook het ontwerp, de samenwerking, de ontwikkeling en het testen.
