@@ -4,174 +4,111 @@
 
 ## 📖 Over het project
 
-Voor Project E3 ontwikkelen we met een groep van maximaal vier studenten een bedrijfsapplicatie voor **Barroc Intens**, een fictief koffiebedrijf.
+We ontwikkelen met maximaal vier studenten een bedrijfsapplicatie voor Barroc Intens, een fictief koffiebedrijf. De applicatie ondersteunt de afdelingen Sales, Maintenance, Finance en Inkoop.
 
-De applicatie moet verschillende afdelingen ondersteunen bij het beheren van hun gegevens en dagelijkse werkzaamheden. Denk hierbij aan Sales, Maintenance, Finance en Inkoop.
+We werken volgens Scrum met twee sprints van drie weken.
 
-Tijdens het project werken we volgens de **Scrum-methodiek**. Het project bestaat uit twee sprints van ieder drie weken.
-
-## 🛠️ Projectplanning
+## 🛠️ Planning
 
 | Sprint | Periode | Onderdeel |
 |---|---|---|
 | Sprint 1 | Week 9 t/m 11 | Fundament & Prototype |
 | Sprint 2 | Week 13 t/m 15 | Uitbreiding & Testen |
 
----
-
 ## 🚀 Sprint 1 – Fundament & Prototype
 
-**Week 9 t/m 11**
-
-### Ontwerp en voorbereiding
-
+### Ontwerp
 - [x] GitHub-repository aanmaken
-- [x] GitHub Projects-scrumbord opzetten
-- [ ] Alle User Stories toevoegen aan de Product Backlog
+- [x] GitHub Projects opzetten
+- [ ] User Stories en acceptatiecriteria
 - [ ] Sprint Backlog samenstellen
-- [ ] Acceptatiecriteria toevoegen aan alle User Stories
-- [ ] Wireframes maken van alle schermen
-- [ ] Activiteitendiagram maken van een complex proces met meerdere rollen
-- [ ] Individueel een ERD maken
-- [ ] Gezamenlijk één definitief ERD vaststellen
+- [ ] Wireframes maken
+- [ ] Activiteitendiagram maken
+- [ ] Individuele ERD's maken
+- [ ] Gezamenlijk ERD vaststellen
 
-### Verplichte functionaliteiten
+### Functionaliteiten
+- [ ] Inlogsysteem met gebruikersrollen
+- [ ] Rolafhankelijk dashboard
+- [ ] Maintenance: storingsaanvragen bekijken
+- [ ] Sales: storingsaanvragen aanmaken en bewerken
+- [ ] Database en seeders
 
-- [ ] Inlogsysteem met verschillende gebruikersrollen
-- [ ] Dashboard afhankelijk van de ingelogde gebruiker
-- [ ] Maintenance: binnengekomen storingsaanvragen bekijken
-- [ ] Sales: nieuwe storingsaanvragen aanmaken
-- [ ] Sales: bestaande storingsaanvragen bewerken
-- [ ] Database en seeders voor storingsaanvragen
-
-**Doel:** Een werkend prototype met de bovenstaande functionaliteiten en de ontwerpen voor de volledige applicatie.
-
----
+**Doel:** Een werkend prototype en complete ontwerpen.
 
 ## 🔧 Sprint 2 – Uitbreiding & Testen
 
-**Week 13 t/m 15 (met kerstvakantie ertussen)**
+We kiezen één uitbreiding:
 
-Tijdens deze sprint kiezen we één van de zes uitbreidingen.
+1. **Finance:** Leasecontracten en facturatie.
+2. **Sales:** Klantintake en CRM.
+3. **Sales:** Offertes maken en versturen.
+4. **Inkoop:** Product- en voorraadbeheer.
+5. **Maintenance:** Planning en kalender.
+6. **Maintenance:** Werkbonnen en afhandeling.
 
-### Beschikbare uitbreidingen
+**Voorgestelde keuze:** Optie 2 – Sales CRM.
 
-#### 1. Finance – Leasecontracten & facturatie ⭐⭐⭐⭐
-- Leasecontracten beheren
-- Facturen aanmaken en bekijken
-- Facturen als betaald markeren
-- BKR-check uitvoeren
-
-#### 2. Sales – Klantintake & CRM ⭐⭐
-- Klanten aanmaken
-- Aantekeningen en afspraken vastleggen
-- Klantgegevens en statussen bekijken
-
-#### 3. Sales – Offertetraject ⭐⭐⭐
-- Productoverzicht per categorie
-- Offertes maken
-- Offertes mailen naar klanten
-- Tablet-vriendelijke interface
-
-#### 4. Inkoop – Product- & voorraadbeheer ⭐⭐⭐
-- Producten beheren
-- Voorraad bijhouden en bijbestellen
-- Goedkeuring bij grote bestellingen
-- Producten zoeken en filteren
-
-#### 5. Maintenance – Planning & kalender ⭐⭐⭐⭐
-- Werkbezoeken inplannen
-- Monteurs koppelen aan storingen
-- Dag- en weekkalender
-- Details per bezoek bekijken
-
-#### 6. Maintenance – Werkbonnen & afhandeling ⭐⭐⭐
-- Werkbonnen invullen
-- Gebruikte materialen registreren
-- Meldingen naar Inkoop versturen
-
-**Voorgestelde keuze:** Optie 2 – Sales CRM. Deze uitbreiding heeft naar verwachting de laagste complexiteit.
-
-### Verplichte tests
-
-- [ ] Technische tests schrijven
+### Tests
 - [ ] Technische tests uitvoeren
 - [ ] Acceptatietest uitvoeren
-- [ ] Testrapport opstellen
-- [ ] Bugs oplossen
-- [ ] Verbeteringen doorvoeren
-
----
+- [ ] Testrapport maken
+- [ ] Bugs oplossen en verbeteringen doorvoeren
 
 ## 📦 Eindoplevering
 
 **Deadline: vrijdag 22 januari 2027**
 
-### Op te leveren onderdelen
-
-- [ ] Werkende MVP-applicatie
+- [ ] Werkende MVP
 - [ ] Ontwerpen en documentatie
-- [ ] User Stories met acceptatiecriteria
+- [ ] User Stories en acceptatiecriteria
 - [ ] Tests en testrapport
 - [ ] Acceptatietest met Product Owner
-- [ ] Verbetervoorstel met prioriteiten en tijdsinschattingen
-- [ ] Vaardighedenportfolio met bewijsstukken
+- [ ] Verbetervoorstel
+- [ ] Vaardighedenportfolio
 - [ ] Eindpresentatie of beursdemonstratie
-- [ ] Persoonlijke reflectie (bij presentatietype A)
+- [ ] Persoonlijke reflectie (indien vereist)
 
 ### Verplichte testdata
 
-Bij de eindoplevering moet de applicatie beschikken over de volgende testdata:
+| Onderdeel | Aantal |
+|---|---:|
+| Actieve klanten | 150 |
+| Inactieve klanten | 40 (10 met BKR) |
+| Facturen | 500 (120 achterstallig) |
+| Leasecontracten | 150 |
+| Werkbonnen | 75 (35 routine, 40 storingen) |
 
-| Onderdeel | Aantal | Bijzonderheden |
-|---|---:|---|
-| Actieve klanten | 150 | |
-| Inactieve klanten | 40 | 10 met BKR-registratie |
-| Facturen | 500 | 120 met betalingsachterstand |
-| Leasecontracten | 150 | |
-| Maintenance-werkbonnen | 75 | 35 routine, 40 storingen |
+## 👥 Teamafspraken
 
----
+- Iedereen komt op tijd en meldt vertraging of afwezigheid.
+- Iedereen werkt actief mee en neemt verantwoordelijkheid.
+- Deadlines worden nagekomen.
+- Problemen worden op tijd besproken.
+- Iedereen houdt GitHub Projects up-to-date.
+- We helpen elkaar en respecteren elkaars werk.
 
-## 👥 Samenwerking & Scrum
+## 📋 Scrum & samenwerking
 
-We gebruiken **GitHub Projects** als scrumbord om de voortgang en taken bij te houden.
-
-Het bord krijgt de volgende kolommen:
+GitHub Projects gebruiken we met de volgende kolommen:
 
 `Product Backlog → Sprint Backlog → To Do → In Progress → Review/Test → Done`
 
-Iedere groepsgenoot is verantwoordelijk voor het verzamelen van eigen bewijsmateriaal voor het vaardighedenportfolio.
+Iedereen verzamelt eigen bewijsmateriaal voor het vaardighedenportfolio.
 
-**Aanbeveling vanuit school:** ongeveer 15 bewijsbare punten per sprint, met een totaal van ongeveer 30 punten.
-
----
+**Richtlijn:** 15 bewijsbare punten per sprint (30 totaal).
 
 ## 🎯 Eerste stappen
 
-De volgende taken moeten als eerste worden uitgevoerd:
-
-1. GitHub-repository en Projects-bord opzetten.
-2. Alle documenten en User Stories downloaden van Itslearning.
-3. Taken en verantwoordelijkheden verdelen.
-4. Iedereen maakt een eigen ERD.
-5. Wireframes maken.
-6. Gezamenlijk het definitieve ERD vaststellen.
-7. Beginnen met het programmeren van:
-   - Het inlogsysteem.
-   - De dashboards.
-   - De storingsaanvragen.
-
----
+1. [x] Repository en Projects-bord opzetten.
+2. [ ] Documenten en User Stories downloaden.
+3. [ ] Taken verdelen.
+4. [ ] ERD's en wireframes maken.
+5. [ ] Gezamenlijk ERD vaststellen.
+6. [ ] Beginnen met programmeren.
 
 ## 📂 Inleverlocatie
 
-**Itslearning → Content → Breda → Projecten → E3 Barroc Intens → Inlevermap**
+Itslearning → Content → Breda → Projecten → E3 Barroc Intens → Inlevermap
 
----
-
-## ℹ️ Belangrijk
-
-Het doel van dit project is niet alleen om een werkende applicatie te bouwen. We moeten ook kunnen aantonen hoe we het project hebben ontworpen, hoe we hebben samengewerkt, hoe we de applicatie hebben ontwikkeld en hoe we deze hebben getest.
-
-Alle documentatie, ontwerpen, code en testresultaten maken onderdeel uit van de eindoplevering.
+**Belangrijk:** Niet alleen de applicatie telt, maar ook het ontwerp, de samenwerking, de ontwikkeling en het testen.
