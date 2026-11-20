@@ -1,0 +1,81 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Laravel environment and local configuration
+.env
+.env.*
+!.env.example
+.envrc
+/auth.json
+
+# Laravel generated files
+/bootstrap/cache/*.php
+/public/build/
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail/
+/storage/logs/*
+!/storage/logs/.gitignore
+
+# Local databases
+/database/*.sqlite
+/database/*.sqlite-*
+
+# Test and code-quality output
+/.phpunit.cache/
+/coverage/
+/.phpstan.cache/
+/.phpactor.json
+.phpunit.result.cache
+/build/
+/dist/
+
+# Debug and package-manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE and editor files
+/.fleet/
+/.idea/
+/.nova/
+/.vscode/
+/.zed/
+*.sublime-workspace
+*.sublime-project
+.vscode/*.code-workspace
+
+# AI and local tooling state
+/.agents/
+/.amp/
+/.claude/
+/.codex/
+/.cursor/
+/.factory/
+/.grok/
+/.junie/
+/.kiro/
+/.pi/
+/.mcp.json
+/boost.json
+/opencode.json
+/opencode.jsonc
+
+# OS metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Private key and certificate formats
+*.pem
+*.key
+*.p12
+*.pfx
