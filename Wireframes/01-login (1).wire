@@ -1,0 +1,43 @@
+project "Barroc Intens - Inloggen" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Login {
+    layout stack(direction: vertical, gap: lg, padding: lg) {
+      component Topbar title: "Barroc Intens" subtitle: "Medewerkersportaal"
+      layout grid(columns: 12, gap: md) {
+        cell span: 3 {
+          component Text text: " "
+        }
+        cell span: 6 {
+          layout card(padding: lg, gap: md) {
+            component Heading text: "BARROC INTENS"
+            component Text text: "Vlammend lekkere koffie"
+            component Divider
+            component Heading text: "Inloggen"
+            component Text text: "Meld je aan om je persoonlijke dashboard te openen."
+            component Input label: "Zakelijk e-mailadres" placeholder: "naam@barroc.nl"
+            component Input label: "Wachtwoord" placeholder: "Voer je wachtwoord in"
+            component Button text: "Inloggen" variant: primary
+            component Text text: "Wachtwoord vergeten? · Neem contact op met de beheerder"
+          }
+        }
+        cell span: 3 {
+          component Text text: " "
+        }
+      }
+      component Text text: "Beveiligde toegang · alleen voor medewerkers"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+project "Barroc Intens - Werkbon WB-108" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Werkbon {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Storingen,Werkbonnen,Planning,Taken,Berichten" active: 2
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "MAINTENANCE" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Maintenance"
+        component Breadcrumbs items: "Maintenance,Werkbon WB-108"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Werkbon WB-108"
+              component Text text: "Registreer werkzaamheden, onderdelen en resultaat."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Opslaan" variant: primary
+              component Button text: "Afronden" variant: secondary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Werkbongegevens"
+              component Text text: "Café Noord · ST-041 · Espressomachine X"
+              component Tabs items: "Diagnose,Werkzaamheden,Onderdelen,Resultaat" active: 0
+              component Checkbox label: "Veiligheidscontrole uitgevoerd" checked: true
+              component Checkbox label: "Probleem vastgesteld" checked: false
+              component Checkbox label: "Machine getest" checked: false
+              component Textarea label: "Uitgevoerde werkzaamheden" rows: 3
+              component Input label: "Gebruikte onderdelen" placeholder: "Artikelcode + aantal"
+              component Select label: "Resultaat" items: "In behandeling,Opgelost,Vervolg nodig"
+              layout stack(direction: horizontal, gap: sm) {
+                component Button text: "Werkbon opslaan" variant: primary
+                component Button text: "Werkbon afronden" variant: secondary
+              }
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Servicebezoek"
+              component Badge text: "In uitvoering" variant: info
+              component Text text: "Afspraak: 23-11 09:00"
+              component Text text: "Monteur: Monteur A"
+              component Heading text: "Bijzonderheden"
+              component Text text: "Klant wacht op definitieve reparatie"
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

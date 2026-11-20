@@ -1,0 +1,69 @@
+project "Barroc Intens - Geen toegang" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen GeenToegang {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Taken,Berichten,Meldingen,Instellingen" active: 0
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "MEDEWERKER" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Medewerker"
+        component Breadcrumbs items: "Medewerker,Geen toegang"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Geen toegang"
+              component Text text: "Je account heeft geen rechten voor deze pagina."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Naar dashboard" variant: primary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 2 {
+            component Text text: " "
+          }
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Badge text: "403" variant: warning
+              component Heading text: "Deze pagina is niet beschikbaar"
+              component Text text: "Je rol heeft geen toestemming voor dit onderdeel."
+              component Text text: "Vraag bij je beheerder om toegang als dit voor je werk nodig is."
+              layout stack(direction: horizontal, gap: sm) {
+                component Button text: "Naar dashboard" variant: primary
+                component Button text: "Terug" variant: secondary
+              }
+            }
+          }
+          cell span: 2 {
+            component Text text: " "
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

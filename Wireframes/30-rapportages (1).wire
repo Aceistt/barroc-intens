@@ -1,0 +1,100 @@
+project "Barroc Intens - Rapportages" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Rapportages {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Facturen,Betalingen,Rapportages,Taken,Meldingen" active: 3
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "FINANCE" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Finance"
+        component Breadcrumbs items: "Finance,Rapportages"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Rapportages"
+              component Text text: "Vergelijk cijfers per periode en afdeling."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Exporteren" variant: primary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 4 {
+            component Select label: "Periode" items: "Deze maand,Vorige maand,Dit jaar"
+          }
+          cell span: 4 {
+            component Select label: "Afdeling" items: "Alle,Finance,Sales,Inkoop,Maintenance"
+          }
+          cell span: 4 {
+            component Button text: "Rapport exporteren" variant: primary
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Omzet" value: "€ 24.800" caption: "Deze maand"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Openstaand" value: "€ 7.200" caption: "12 facturen"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Nieuwe orders" value: "3" caption: "Deze week"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Storingen" value: "6" caption: "Open"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 6 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Omzetontwikkeling"
+              component Chart type: "line" height: 220
+            }
+          }
+          cell span: 6 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Werkverdeling"
+              component Chart type: "bar" height: 220
+            }
+          }
+        }
+        layout card(padding: md, gap: sm) {
+          component Heading text: "Onderliggende gegevens"
+          component Table columns: "Afdeling,KPI,Periode,Resultaat" rows: 5 pagination: true actions: "eye,edit"
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

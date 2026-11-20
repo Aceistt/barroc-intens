@@ -1,0 +1,97 @@
+project "Barroc Intens - Betalingen" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Betalingen {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Facturen,Betalingen,Rapportages,Taken,Meldingen" active: 2
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "FINANCE" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Finance"
+        component Breadcrumbs items: "Finance,Betalingen"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Betalingen"
+              component Text text: "Registreer ontvangen bedragen en koppel facturen."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Betaling registreren" variant: primary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Ontvangsten week" value: "€ 3.140" caption: "4 transacties"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Nog te matchen" value: "2" caption: "Controle nodig"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Betalingen vandaag" value: "1" caption: "Ontvangen"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Openstaand" value: "€ 7.200" caption: "Alle klanten"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 6 {
+            component Input label: "Zoeken" placeholder: "Factuur, klant of referentie"
+          }
+          cell span: 3 {
+            component Select label: "Methode" items: "Alle,Bank,Contant"
+          }
+          cell span: 3 {
+            component Select label: "Periode" items: "Deze week,Deze maand,Alle"
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Overzicht"
+              component Table columns: "Datum,Factuur,Klant,Bedrag,Methode" rows: 6 pagination: true actions: "eye,edit"
+              component Text text: "18-11 INV-017 Café West - € 450 - Bank"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Controlepunten"
+              component List items: "Koppel ontvangst aan factuur,Controleer bedrag en datum,Geen dubbele registratie"
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

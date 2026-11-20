@@ -1,0 +1,43 @@
+project "Barroc Intens - Wachtwoord herstellen" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen WachtwoordHerstellen {
+    layout stack(direction: vertical, gap: lg, padding: lg) {
+      component Topbar title: "Barroc Intens" subtitle: "Medewerkersportaal"
+      layout grid(columns: 12, gap: md) {
+        cell span: 3 {
+          component Text text: " "
+        }
+        cell span: 6 {
+          layout card(padding: lg, gap: md) {
+            component Heading text: "BARROC INTENS"
+            component Text text: "Vlammend lekkere koffie"
+            component Divider
+            component Heading text: "Wachtwoord herstellen"
+            component Text text: "Ontvang een e-mail met een herstellink."
+            component Input label: "Zakelijk e-mailadres" placeholder: "naam@barroc.nl"
+            component Button text: "Herstellink versturen" variant: primary
+            component Button text: "Terug naar login" variant: secondary
+            component Text text: "Controleer ook je spammap als de mail niet aankomt."
+          }
+        }
+        cell span: 3 {
+          component Text text: " "
+        }
+      }
+      component Text text: "Beveiligde toegang · alleen voor medewerkers"
+    }
+  }
+}

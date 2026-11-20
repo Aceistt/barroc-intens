@@ -1,0 +1,66 @@
+project "Barroc Intens - Meldingen" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Meldingen {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Taken,Berichten,Meldingen,Instellingen" active: 3
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "MEDEWERKER" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Medewerker"
+        component Breadcrumbs items: "Medewerker,Meldingen"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Meldingen"
+              component Text text: "Bekijk updates die relevant zijn voor jouw rol."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Alles gelezen" variant: primary
+            }
+          }
+        }
+        component Tabs items: "Alle,Ongelezen,Mijn afdeling" active: 1
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Ongelezen meldingen"
+              component List items: "Nieuwe storing ST-041,Offerte OFF-104 geaccepteerd,Inkooporder PO-302 verzonden,Afspraak verplaatst"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Voorkeuren"
+              component Toggle label: "Interne notificaties" enabled: true
+              component Toggle label: "E-mailmeldingen" enabled: false
+              component Button text: "Alles gelezen" variant: primary
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

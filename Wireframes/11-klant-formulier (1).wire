@@ -1,0 +1,104 @@
+project "Barroc Intens - Klant toevoegen" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen KlantFormulier {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Klanten,Leads,Offertes,Orders,Taken,Berichten" active: 1
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "SALES" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Sales"
+        component Breadcrumbs items: "Sales,Klant toevoegen"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Klant toevoegen"
+              component Text text: "Registreer bedrijfs- en contactgegevens."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Opslaan" variant: primary
+              component Button text: "Annuleren" variant: secondary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Gegevens invoeren"
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Input label: "Bedrijfsnaam" placeholder: "Bijv. Café Noord"
+                }
+                cell span: 6 {
+                  component Input label: "Contactpersoon" placeholder: "Voor- en achternaam"
+                }
+              }
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Input label: "E-mailadres" placeholder: "contact@bedrijf.nl"
+                }
+                cell span: 6 {
+                  component Input label: "Telefoon" placeholder: "06 of vast nummer"
+                }
+              }
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Input label: "Adres" placeholder: "Straat en huisnummer"
+                }
+                cell span: 6 {
+                  component Input label: "Postcode en plaats" placeholder: "4811 AA Breda"
+                }
+              }
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Select label: "Status" items: "Actief,Inactief"
+                }
+                cell span: 6 {
+                  component Select label: "Type klant" items: "Zakelijk,Prospect"
+                }
+              }
+              layout stack(direction: horizontal, gap: sm) {
+                component Button text: "Opslaan" variant: primary
+                component Button text: "Annuleren" variant: secondary
+              }
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: vertical, gap: md) {
+              layout card(padding: md, gap: sm) {
+                component Heading text: "Invoerhulp"
+                component Text text: "Verplichte velden zijn herkenbaar"
+                component Text text: "Gebruik het zakelijke e-mailadres"
+                component Text text: "Controleer het afleveradres"
+              }
+              component Alert title: "Let op" text: "Deze klant kan later aan offertes en orders worden gekoppeld." variant: info
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

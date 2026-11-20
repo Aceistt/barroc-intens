@@ -1,0 +1,97 @@
+project "Barroc Intens - Storing registreren" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen StoringFormulier {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Storingen,Werkbonnen,Planning,Taken,Berichten" active: 1
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "MAINTENANCE" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Maintenance"
+        component Breadcrumbs items: "Maintenance,Storing registreren"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Storing registreren"
+              component Text text: "Leg een storing vast voor de planner en monteur."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Opslaan" variant: primary
+              component Button text: "Annuleren" variant: secondary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Gegevens invoeren"
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Select label: "Klant" items: "Café Noord,Bistro Zuid,Koffiehuis West"
+                }
+                cell span: 6 {
+                  component Select label: "Machine" items: "Espressomachine X,Koffiemolen Y"
+                }
+              }
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Input label: "Onderwerp" placeholder: "Bijv. machine lekt"
+                }
+                cell span: 6 {
+                  component Input label: "Meldingsdatum" placeholder: "dd-mm-jjjj"
+                }
+              }
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Select label: "Prioriteit" items: "Laag,Normaal,Hoog,Urgent"
+                }
+                cell span: 6 {
+                  component Select label: "Status" items: "Nieuw,In behandeling"
+                }
+              }
+              component Textarea label: "Omschrijving van de storing" placeholder: "Vul aanvullende informatie in" rows: 3
+              layout stack(direction: horizontal, gap: sm) {
+                component Button text: "Storing opslaan" variant: primary
+                component Button text: "Annuleren" variant: secondary
+              }
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: vertical, gap: md) {
+              layout card(padding: md, gap: sm) {
+                component Heading text: "Meldingsinformatie"
+                component Text text: "Foto toevoegen: optioneel"
+                component Text text: "Geef aan wanneer het defect begon"
+                component Text text: "Een planner kan de storing inplannen"
+              }
+              component Alert title: "Let op" text: "Een urgente storing verdient duidelijke prioritering." variant: info
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

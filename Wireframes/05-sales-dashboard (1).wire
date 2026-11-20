@@ -1,0 +1,103 @@
+project "Barroc Intens - Sales dashboard" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen SalesDashboard {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Klanten,Leads,Offertes,Orders,Taken,Berichten" active: 0
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "SALES" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Sales"
+        component Breadcrumbs items: "Sales,Sales dashboard"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Sales dashboard"
+              component Text text: "Volg leads op en maak offertes voor klanten"
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Nieuwe lead" variant: primary
+              component Button text: "Nieuwe offerte" variant: secondary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Open leads" value: "14" caption: "5 deze week"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Offertes open" value: "8" caption: "2 reacties verwacht"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Orders nieuw" value: "3" caption: "Deze week"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Winratio" value: "32%" caption: "Illustratief"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Verkoopfunnel"
+              component Chart type: "bar" height: 190
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Volgende acties"
+              component List items: "Café Noord bellen,Bistro Zuid offerte opvolgen,Nieuwe lead beoordelen,Order SO-202 controleren"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Actieoverzicht"
+              component List items: "OFF-104 wacht op klantreactie,2 leads hebben vandaag follow-up"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Snel naar"
+              layout stack(direction: horizontal, gap: sm) {
+                component Button text: "Nieuwe lead" variant: primary
+                component Button text: "Nieuwe offerte" variant: secondary
+              }
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

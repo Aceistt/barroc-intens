@@ -1,0 +1,97 @@
+project "Barroc Intens - Taken" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Taken {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Taken,Berichten,Meldingen,Instellingen" active: 1
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "MEDEWERKER" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Medewerker"
+        component Breadcrumbs items: "Medewerker,Taken"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Taken"
+              component Text text: "Volg acties en verdeel verantwoordelijkheid."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Nieuwe taak" variant: primary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Mijn open taken" value: "7" caption: "Nog te doen"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Over tijd" value: "2" caption: "Prioriteit"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Vandaag" value: "3" caption: "Deadline"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Afgerond" value: "12" caption: "Deze week"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 6 {
+            component Input label: "Zoeken" placeholder: "Omschrijving of eigenaar"
+          }
+          cell span: 3 {
+            component Select label: "Status" items: "Alle,Open,Bezig,Afgerond"
+          }
+          cell span: 3 {
+            component Select label: "Prioriteit" items: "Alle,Laag,Normaal,Hoog"
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Overzicht"
+              component Table columns: "Taak,Afdeling,Eigenaar,Deadline,Status" rows: 6 pagination: true actions: "eye,edit"
+              component Text text: "Offerte opvolgen - Sales - 23-11 - Open"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Taken met prioriteit"
+              component List items: "Onderdeel bestellen,Offerte opvolgen,Werkbon afronden"
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

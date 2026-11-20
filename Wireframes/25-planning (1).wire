@@ -1,0 +1,98 @@
+project "Barroc Intens - Weekplanning" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Planning {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Planning,Afspraken,Storingen,Taken,Berichten" active: 1
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "PLANNER" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Planner"
+        component Breadcrumbs items: "Planner,Weekplanning"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Weekplanning"
+              component Text text: "Bekijk de capaciteit per monteur en plan afspraken."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Nieuwe afspraak" variant: primary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 4 {
+            component Select label: "Weergave" items: "Dag,Week,Maand"
+          }
+          cell span: 4 {
+            component Input label: "Week vanaf" placeholder: "23-11-2026"
+          }
+          cell span: 4 {
+            component Button text: "Afspraak toevoegen" variant: primary
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Afspraken" value: "9" caption: "Deze week"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Open plekken" value: "7" caption: "Beschikbaar"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Niet toegewezen" value: "2" caption: "Aandacht"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Monteurs" value: "5" caption: "Team"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Planning per medewerker"
+              component Table columns: "Tijd,Maandag,Dinsdag,Woensdag,Donderdag,Vrijdag" rows: 5 pagination: true actions: "eye,edit"
+              component Text text: "Voorbeeld: 09:00 Café Noord · 11:30 Bistro Zuid"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Nog in te plannen"
+              component List items: "ST-041 Café Noord,ST-044 Bistro Zuid"
+              component Button text: "Inplannen" variant: primary
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

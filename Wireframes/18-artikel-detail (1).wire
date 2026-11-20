@@ -1,0 +1,76 @@
+project "Barroc Intens - Artikel - Espressobonen" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen ArtikelDetail {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Voorraad,Leveranciers,Inkooporders,Taken,Berichten" active: 1
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "INKOOP" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Inkoop"
+        component Breadcrumbs items: "Inkoop,Artikel - Espressobonen"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Artikel - Espressobonen"
+              component Text text: "Alle informatie over voorraadniveau en leverancier."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Artikel bewerken" variant: primary
+              component Button text: "Bestellen" variant: secondary
+            }
+          }
+        }
+        component Tabs items: "Overzicht,Mutaties,Inkoopgeschiedenis" active: 0
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Artikelinformatie"
+              component Text text: "Artikelcode: ART-101"
+              component Text text: "Naam: Espresso koffiebonen"
+              component Text text: "Categorie: Grondstoffen"
+              component Text text: "Eenheid: kilogram"
+              component Text text: "Leverancier: KoffieGroothandel"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Voorraadstatus"
+              component Text text: "Actueel: 12 kg"
+              component Text text: "Minimum: 20 kg"
+              component Text text: "Besteladvies: 8 kg"
+              component Text text: "Locatie: Magazijn A"
+            }
+          }
+        }
+        layout card(padding: md, gap: sm) {
+          component Heading text: "Laatste mutaties"
+          component Table columns: "Datum,Soort,Aantal,Medewerker" rows: 4 pagination: true actions: "eye,edit"
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

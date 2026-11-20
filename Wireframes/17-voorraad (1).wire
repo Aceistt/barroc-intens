@@ -1,0 +1,98 @@
+project "Barroc Intens - Voorraad" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Voorraad {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Voorraad,Leveranciers,Inkooporders,Taken,Berichten" active: 1
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "INKOOP" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Inkoop"
+        component Breadcrumbs items: "Inkoop,Voorraad"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Voorraad"
+              component Text text: "Bekijk voorraadstanden, minima en bestellingen."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Artikel toevoegen" variant: primary
+              component Button text: "Inkooporder" variant: secondary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Artikelen" value: "128" caption: "In assortiment"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Onder minimum" value: "5" caption: "Bestellen"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Gereserveerd" value: "18" caption: "Voor orders"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Leveringen onderweg" value: "3" caption: "Verwacht"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 6 {
+            component Input label: "Zoeken" placeholder: "Artikelnaam of code"
+          }
+          cell span: 3 {
+            component Select label: "Voorraadstatus" items: "Alle,Laag,Voldoende"
+          }
+          cell span: 3 {
+            component Select label: "Categorie" items: "Alle,Bronproducten,Onderdelen"
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Overzicht"
+              component Table columns: "Artikel,Categorie,Voorraad,Minimum,Status" rows: 6 pagination: true actions: "eye,edit"
+              component Text text: "Koffiebonen Espresso - 12 kg in voorraad - minimum 20 kg"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Inkoopadvies"
+              component List items: "Koffiebonen Espresso: +8 kg,Reinigingsmiddel: +6 stuks,Waterfilters: +4 stuks"
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

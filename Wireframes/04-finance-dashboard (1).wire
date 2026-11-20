@@ -1,0 +1,103 @@
+project "Barroc Intens - Finance dashboard" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen FinanceDashboard {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Facturen,Betalingen,Rapportages,Taken,Meldingen" active: 0
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "FINANCE" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Finance"
+        component Breadcrumbs items: "Finance,Finance dashboard"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Finance dashboard"
+              component Text text: "Facturen, betalingen en financiële gezondheid"
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Facturen bekijken" variant: primary
+              component Button text: "Rapport exporteren" variant: secondary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Omzet maand" value: "€ 24.800" caption: "Fictieve gegevens"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Openstaand" value: "€ 7.200" caption: "12 facturen"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Vervallen" value: "4" caption: "Direct opvolgen"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Betaald deze week" value: "€ 3.140" caption: "4 ontvangsten"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Ontwikkeling omzet"
+              component Chart type: "line" height: 190
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Recente ontvangsten"
+              component List items: "INV-017  €450,INV-019  €990,INV-020  €850,INV-023  €850"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Actieoverzicht"
+              component List items: "INV-018: Café Noord is vervallen,INV-021: Bistro Zuid staat nog open"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Snel naar"
+              layout stack(direction: horizontal, gap: sm) {
+                component Button text: "Facturen bekijken" variant: primary
+                component Button text: "Rapport exporteren" variant: secondary
+              }
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

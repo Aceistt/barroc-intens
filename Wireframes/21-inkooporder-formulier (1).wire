@@ -1,0 +1,89 @@
+project "Barroc Intens - Nieuwe inkooporder" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen InkooporderFormulier {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Voorraad,Leveranciers,Inkooporders,Taken,Berichten" active: 3
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "INKOOP" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Inkoop"
+        component Breadcrumbs items: "Inkoop,Nieuwe inkooporder"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Nieuwe inkooporder"
+              component Text text: "Bestel onderdelen en voorraad bij een leverancier."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Concept bewaren" variant: primary
+              component Button text: "Plaatsen" variant: secondary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Bestelgegevens"
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Select label: "Leverancier" items: "KoffieGroothandel,Onderdelen BV"
+                }
+                cell span: 6 {
+                  component Select label: "Leverwijze" items: "Afhalen,Bezorgen"
+                }
+              }
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Input label: "Leverdatum gewenst" placeholder: "dd-mm-jjjj"
+                }
+                cell span: 6 {
+                  component Input label: "Referentie" placeholder: "PO-..."
+                }
+              }
+              component Heading text: "Bestelregels"
+              component Table columns: "Artikel,Aantal,Eenheid,Prijs" rows: 4 pagination: true actions: "eye,edit"
+              component Button text: "Regel toevoegen" variant: primary
+              component Textarea label: "Opmerkingen" rows: 3
+              layout stack(direction: horizontal, gap: sm) {
+                component Button text: "Concept bewaren" variant: primary
+                component Button text: "Bestelling plaatsen" variant: secondary
+              }
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Overzicht"
+              component Stat title: "Totaal bestelling" value: "€ 0,00"
+              component Text text: "Ontvangst: nog niet gepland"
+              component Alert title: "Controle" text: "Controleer leverancier en aantallen." variant: warning
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

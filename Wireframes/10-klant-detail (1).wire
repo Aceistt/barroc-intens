@@ -1,0 +1,75 @@
+project "Barroc Intens - Klantdetails - Café Noord" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen KlantDetail {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Klanten,Leads,Offertes,Orders,Taken,Berichten" active: 1
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "SALES" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Sales"
+        component Breadcrumbs items: "Sales,Klantdetails - Café Noord"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Klantdetails - Café Noord"
+              component Text text: "Bekijk de klantgeschiedenis vanuit één centrale klantkaart."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Klant bewerken" variant: primary
+              component Button text: "Offerte maken" variant: secondary
+            }
+          }
+        }
+        component Tabs items: "Overzicht,Contacten,Offertes,Orders,Machines,Facturen" active: 0
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Klantprofiel"
+              component Text text: "K-001  ·  Café Noord"
+              component Text text: "Contact: S. Janssen"
+              component Text text: "E-mail: info@cafenoord.nl"
+              component Text text: "Plaats: Breda"
+              component Text text: "Status: actief"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Recente activiteiten"
+              component Text text: "18-11 Offerte verzonden"
+              component Text text: "15-11 Servicebezoek"
+              component Text text: "04-11 Telefoongesprek"
+            }
+          }
+        }
+        layout card(padding: md, gap: sm) {
+          component Heading text: "Gerelateerde zaken"
+          component Table columns: "Referentie,Type,Datum,Status" rows: 4 pagination: true actions: "eye,edit"
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

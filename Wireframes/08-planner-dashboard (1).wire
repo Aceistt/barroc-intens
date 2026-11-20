@@ -1,0 +1,103 @@
+project "Barroc Intens - Planner dashboard" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen PlannerDashboard {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Planning,Afspraken,Storingen,Taken,Berichten" active: 0
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "PLANNER" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Planner"
+        component Breadcrumbs items: "Planner,Planner dashboard"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Planner dashboard"
+              component Text text: "Plan servicemomenten en wijs monteurs toe"
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Afspraak plannen" variant: primary
+              component Button text: "Weekplanning" variant: secondary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Afspraken week" value: "9" caption: "3 vandaag"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Niet toegewezen" value: "2" caption: "Actie nodig"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Beschikbare monteurs" value: "3" caption: "Van de 5"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Open storingen" value: "6" caption: "Te plannen"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Werkdruk per dag"
+              component Chart type: "bar" height: 190
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Dagplanning"
+              component List items: "09:00 Monteur A - Café Noord,11:30 Monteur B - Bistro Zuid,14:00 Monteur C - Koffiehuis West"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Actieoverzicht"
+              component List items: "2 storingen hebben nog geen monteur,Controleer overlap op dinsdag"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Snel naar"
+              layout stack(direction: horizontal, gap: sm) {
+                component Button text: "Afspraak plannen" variant: primary
+                component Button text: "Weekplanning" variant: secondary
+              }
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

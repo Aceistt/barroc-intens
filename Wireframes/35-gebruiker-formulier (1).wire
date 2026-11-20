@@ -1,0 +1,96 @@
+project "Barroc Intens - Gebruiker toevoegen" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen GebruikerFormulier {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Klanten,Sales,Inkoop,Planning,Onderhoud,Finance,Gebruikers,Instellingen" active: 7
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "ADMIN" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Admin"
+        component Breadcrumbs items: "Admin,Gebruiker toevoegen"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Gebruiker toevoegen"
+              component Text text: "Maak een account met juiste toegang voor de afdeling."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Uitnodigen" variant: primary
+              component Button text: "Annuleren" variant: secondary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Gegevens invoeren"
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Input label: "Naam" placeholder: "Voor- en achternaam"
+                }
+                cell span: 6 {
+                  component Input label: "E-mailadres" placeholder: "naam@barroc.nl"
+                }
+              }
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Select label: "Rol" items: "Admin,Finance,Sales,Inkoop,Maintenance,Planner"
+                }
+                cell span: 6 {
+                  component Select label: "Accountstatus" items: "Actief,Geblokkeerd"
+                }
+              }
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Select label: "Afdeling" items: "Finance,Sales,Inkoop,Maintenance,Planning,Beheer"
+                }
+                cell span: 6 {
+                  component Input label: "Telefoon" placeholder: "Optioneel"
+                }
+              }
+              layout stack(direction: horizontal, gap: sm) {
+                component Button text: "Uitnodiging sturen" variant: primary
+                component Button text: "Annuleren" variant: secondary
+              }
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: vertical, gap: md) {
+              layout card(padding: md, gap: sm) {
+                component Heading text: "Toegangsmodel"
+                component Text text: "Eén medewerker heeft een toegewezen rol"
+                component Text text: "Afdeling bepaalt het dashboard"
+                component Text text: "Admin kan gebruikers beheren"
+              }
+              component Alert title: "Let op" text: "Rechten zijn schematisch; de product owner bepaalt de definitieve matrix." variant: info
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

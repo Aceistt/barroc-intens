@@ -1,0 +1,97 @@
+project "Barroc Intens - Afspraak plannen" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen AfspraakFormulier {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Planning,Afspraken,Storingen,Taken,Berichten" active: 2
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "PLANNER" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Planner"
+        component Breadcrumbs items: "Planner,Afspraak plannen"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Afspraak plannen"
+              component Text text: "Koppel een medewerker aan een klant en werkbon."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Opslaan" variant: primary
+              component Button text: "Annuleren" variant: secondary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Gegevens invoeren"
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Select label: "Klant" items: "Café Noord,Bistro Zuid,Koffiehuis West"
+                }
+                cell span: 6 {
+                  component Select label: "Storing / werkbon" items: "ST-041,ST-042,ST-043"
+                }
+              }
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Select label: "Monteur" items: "Monteur A,Monteur B,Monteur C"
+                }
+                cell span: 6 {
+                  component Input label: "Datum" placeholder: "dd-mm-jjjj"
+                }
+              }
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Input label: "Begintijd" placeholder: "09:00"
+                }
+                cell span: 6 {
+                  component Input label: "Eindtijd" placeholder: "10:30"
+                }
+              }
+              component Textarea label: "Bijzonderheden voor monteur" placeholder: "Vul aanvullende informatie in" rows: 3
+              layout stack(direction: horizontal, gap: sm) {
+                component Button text: "Afspraak opslaan" variant: primary
+                component Button text: "Annuleren" variant: secondary
+              }
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: vertical, gap: md) {
+              layout card(padding: md, gap: sm) {
+                component Heading text: "Beschikbaarheid"
+                component Text text: "Monteur A: beschikbaar"
+                component Text text: "Monteur B: bezoek gepland"
+                component Text text: "Reistijd: nog te bepalen"
+              }
+              component Alert title: "Let op" text: "Controleer conflicten voordat je opslaat." variant: info
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

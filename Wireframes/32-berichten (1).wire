@@ -1,0 +1,74 @@
+project "Barroc Intens - Interne berichten" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Berichten {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Taken,Berichten,Meldingen,Instellingen" active: 2
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "MEDEWERKER" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Medewerker"
+        component Breadcrumbs items: "Medewerker,Interne berichten"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Interne berichten"
+              component Text text: "Werkcommunicatie per team en onderwerp."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Nieuw gesprek" variant: primary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Gesprekken"
+              component Input label: "Zoek gesprek" placeholder: "Afdeling of collega"
+              component List items: "Algemeen,Sales,Inkoop,Maintenance,Finance"
+            }
+          }
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Inkoop en Maintenance"
+              component Badge text: "Gedeelde conversatie" variant: info
+              layout panel(padding: md, gap: sm) {
+                component Text text: "10:02  Maintenance"
+                component Text text: "Onderdeel nodig voor storing ST-041."
+              }
+              layout panel(padding: md, gap: sm) {
+                component Text text: "10:08  Inkoop"
+                component Text text: "Levering wordt morgen verwacht."
+              }
+              component Textarea label: "Bericht" placeholder: "Schrijf een bericht..." rows: 3
+              component Button text: "Bericht versturen" variant: primary
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

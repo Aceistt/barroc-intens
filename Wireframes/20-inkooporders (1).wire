@@ -1,0 +1,97 @@
+project "Barroc Intens - Inkooporders" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Inkooporders {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Voorraad,Leveranciers,Inkooporders,Taken,Berichten" active: 3
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "INKOOP" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Inkoop"
+        component Breadcrumbs items: "Inkoop,Inkooporders"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Inkooporders"
+              component Text text: "Bestellingen bij leveranciers en levering opvolgen."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Nieuwe inkooporder" variant: primary
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Concept" value: "2" caption: "Nog niet verstuurd"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Besteld" value: "5" caption: "Bevestigd"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Onderweg" value: "3" caption: "Levering verwacht"
+            }
+          }
+          cell span: 3 {
+            layout card(padding: md, gap: sm) {
+              component Stat title: "Ontvangen" value: "12" caption: "Deze maand"
+            }
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 6 {
+            component Input label: "Zoeken" placeholder: "Nummer of leverancier"
+          }
+          cell span: 3 {
+            component Select label: "Status" items: "Alle,Concept,Besteld,Ontvangen"
+          }
+          cell span: 3 {
+            component Select label: "Periode" items: "Deze maand,Alle"
+          }
+        }
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Overzicht"
+              component Table columns: "PO-nummer,Leverancier,Bedrag,Verwacht,Status" rows: 6 pagination: true actions: "eye,edit"
+              component Text text: "PO-302 - KoffieGroothandel - Morgen verwacht"
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Te controleren"
+              component List items: "PO-302: leverdatum morgen,PO-304: leverbevestiging ontbreekt"
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}

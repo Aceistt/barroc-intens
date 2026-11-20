@@ -1,0 +1,78 @@
+project "Barroc Intens - Instellingen" {
+  style {
+    device: "desktop"
+    density: "compact"
+    spacing: "md"
+    radius: "md"
+    stroke: "thin"
+    font: "base"
+  }
+  colors {
+    primary: #586477
+    accent: #586477
+    control: #586477
+    chart: #8794A5
+  }
+  screen Instellingen {
+    layout split(sidebar: 248, gap: sm) {
+      layout stack(direction: vertical, gap: lg, padding: md) {
+        component Heading text: "BARROC INTENS"
+        component Text text: "VLAMMEND LEKKERE KOFFIE"
+        component Divider
+        component SidebarMenu items: "Dashboard,Taken,Berichten,Meldingen,Instellingen" active: 4
+        layout panel(padding: md, gap: sm) {
+          component Badge text: "MEDEWERKER" variant: info
+          component Text text: "Persoonlijke afdelingsomgeving"
+        }
+      }
+      layout stack(direction: vertical, gap: md, padding: md) {
+        component Topbar title: "Barroc Intens" subtitle: "Interne bedrijfsapplicatie" user: "Medewerker"
+        component Breadcrumbs items: "Medewerker,Instellingen"
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout stack(direction: vertical, gap: xs) {
+              component Heading text: "Instellingen"
+              component Text text: "Pas persoonlijke voorkeuren en beveiliging aan."
+            }
+          }
+          cell span: 4 {
+            layout stack(direction: horizontal, gap: sm) {
+              component Button text: "Wijzigingen opslaan" variant: primary
+            }
+          }
+        }
+        component Tabs items: "Profiel,Meldingen,Beveiliging" active: 0
+        layout grid(columns: 12, gap: md) {
+          cell span: 8 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Mijn profiel"
+              layout grid(columns: 12, gap: md) {
+                cell span: 6 {
+                  component Input label: "Weergavenaam" placeholder: "Voor- en achternaam"
+                }
+                cell span: 6 {
+                  component Input label: "E-mailadres" placeholder: "naam@barroc.nl"
+                }
+              }
+              component Input label: "Telefoonnummer" placeholder: "Optioneel"
+              component Heading text: "Meldingen"
+              component Toggle label: "E-mailupdates" enabled: true
+              component Toggle label: "In-app meldingen" enabled: true
+              component Button text: "Wijzigingen opslaan" variant: primary
+            }
+          }
+          cell span: 4 {
+            layout card(padding: md, gap: sm) {
+              component Heading text: "Beveiliging"
+              component Text text: "Toegang via persoonlijke login"
+              component Button text: "Wachtwoord wijzigen" variant: secondary
+              component Alert variant: info title: "Privacy" text: "Je ziet alleen toegestane gegevens."
+            }
+          }
+        }
+        component Divider
+        component Text text: "LOW-FIDELITY ONTWERP · VOORBEELDGEGEVENS · ROLE-BASED ACCESS"
+      }
+    }
+  }
+}
