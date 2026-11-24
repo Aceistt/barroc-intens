@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class DashboardTest extends TestCase
@@ -36,8 +38,8 @@ class DashboardTest extends TestCase
 
     public function test_admin_sidebar_matches_the_admin_dashboard_wireframe(): void
     {
-        $user = User::factory()->create();
-        $user->setAttribute('role', 'admin');
+        $role = Role::create(['name' => 'Admin']);
+        $user = User::factory()->for($role)->create();
 
         $response = $this->actingAs($user)->get(route('dashboard'));
 
@@ -52,28 +54,35 @@ class DashboardTest extends TestCase
         }
     }
 
-    public function test_department_sidebar_only_shows_its_role_tabs(): void
+    #[DataProvider('departmentNavigation')]
+    public function test_department_sidebar_only_shows_its_role_tabs(string $roleName, array $tabs): void
     {
-        $roleTabs = [
-            'finance' => ['Dashboard', 'Facturen', 'Betalingen', 'Rapportages', 'Taken', 'Meldingen'],
-            'sales' => ['Dashboard', 'Klanten', 'Leads', 'Offertes', 'Orders', 'Taken', 'Berichten'],
-            'inkoop' => ['Dashboard', 'Voorraad', 'Leveranciers', 'Inkooporders', 'Taken', 'Berichten'],
-            'maintenance' => ['Dashboard', 'Storingen', 'Werkbonnen', 'Planning', 'Taken', 'Berichten'],
-            'planner' => ['Dashboard', 'Planning', 'Afspraken', 'Storingen'],
-        ];
+        $role = Role::create(['name' => $roleName]);
+        $user = User::factory()->for($role)->create();
+        $response = $this->actingAs($user)->get(route('dashboard'));
 
-        foreach ($roleTabs as $role => $tabs) {
-            $user = User::factory()->create();
-            $user->setAttribute('role', $role);
-            $response = $this->actingAs($user)->get(route('dashboard'));
+        $response->assertOk();
 
-            $response->assertOk();
-
-            foreach ($tabs as $tab) {
-                $response->assertSee($tab);
-            }
-
-            $response->assertDontSee('Gebruikers');
+        foreach ($tabs as $tab) {
+            $response->assertSeeText($tab);
         }
+
+        $departmentTabs = ['Klanten', 'Facturen', 'Betalingen', 'Rapportages', 'Taken', 'Meldingen', 'Leads', 'Offertes', 'Orders', 'Berichten', 'Voorraad', 'Leveranciers', 'Inkooporders', 'Storingen', 'Werkbonnen', 'Planning', 'Afspraken', 'Gebruikers', 'Instellingen'];
+
+        foreach (array_diff($departmentTabs, $tabs) as $tab) {
+            $response->assertDontSeeText($tab);
+        }
+    }
+
+    /** @return array<string, array{string, list<string>}> */
+    public static function departmentNavigation(): array
+    {
+        return [
+            'finance' => ['Finance', ['Dashboard', 'Facturen', 'Betalingen', 'Rapportages', 'Taken', 'Meldingen']],
+            'sales' => ['Sales', ['Dashboard', 'Klanten', 'Leads', 'Offertes', 'Orders', 'Taken', 'Berichten']],
+            'inkoop' => ['Inkoop', ['Dashboard', 'Voorraad', 'Leveranciers', 'Inkooporders', 'Taken', 'Berichten']],
+            'maintenance' => ['Maintenance', ['Dashboard', 'Storingen', 'Werkbonnen', 'Planning', 'Taken', 'Berichten']],
+            'planner' => ['Planner', ['Dashboard', 'Planning', 'Afspraken', 'Storingen']],
+        ];
     }
 }

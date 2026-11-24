@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\Role;
@@ -9,6 +10,7 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $roles = [
+            Role::DEFAULT_NAME,
             'Admin',
             'Sales',
             'Finance',

@@ -5,7 +5,7 @@
     </head>
     <body class="min-h-screen bg-white text-slate-900">
         @php
-            $userRole = strtolower(trim((string) data_get(auth()->user(), 'role', '')));
+            $userRole = strtolower(trim(auth()->user()?->role?->name ?? ''));
             $userRole = match ($userRole) {
                 'administrator' => 'admin',
                 'onderhoud' => 'maintenance',

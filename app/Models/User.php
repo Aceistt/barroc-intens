@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Database\Factories\UserFactory;
@@ -19,7 +20,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  * @property int $id
  * @property string $name
  * @property string $email
- * @property string|null $telephone
+ * @property string $telephone
  * @property int $role_id
  * @property Carbon|null $email_verified_at
  * @property string $password
@@ -58,6 +59,8 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
 
     /**
      * Relationship: each user belongs to one role.
+     *
+     * @return BelongsTo<Role, $this>
      */
     public function role(): BelongsTo
     {

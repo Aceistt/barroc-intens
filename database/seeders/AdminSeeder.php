@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\User;
@@ -10,6 +11,11 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
+        // Het demo-account is alleen bedoeld voor lokale ontwikkeling en tests.
+        if (! app()->environment(['local', 'testing'])) {
+            return;
+        }
+
         // Zoek de Admin-rol op naam
         $adminRoleId = DB::table('roles')
             ->where('name', 'Admin')
@@ -21,8 +27,8 @@ class AdminSeeder extends Seeder
             );
         }
 
-        // Maak de admin aan of werk deze bij
-        User::updateOrCreate(
+        // Bestaande accounts mogen niet worden gepromoveerd of overschreven.
+        User::firstOrCreate(
             ['email' => 'admin@example.com'],
             [
                 'name' => 'Admin',
