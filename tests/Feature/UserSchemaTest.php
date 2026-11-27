@@ -85,7 +85,7 @@ class UserSchemaTest extends TestCase
         $this->seed(DatabaseSeeder::class);
 
         $this->assertDatabaseCount('roles', 7);
-        $this->assertDatabaseCount('users', 1);
+        $this->assertDatabaseCount('users', 6);
         $this->assertTrue(User::firstOrFail()->hasRole('Admin'));
     }
 
