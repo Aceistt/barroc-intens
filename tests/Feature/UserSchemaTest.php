@@ -87,6 +87,7 @@ class UserSchemaTest extends TestCase
         $this->assertDatabaseCount('roles', 7);
         $this->assertDatabaseCount('users', 6);
         $this->assertTrue(User::firstOrFail()->hasRole('Admin'));
+        $this->assertDatabaseCount('fault_reports', 18);
     }
 
     public function test_admin_seeder_does_not_promote_or_overwrite_an_existing_account(): void

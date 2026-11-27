@@ -3,7 +3,7 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white text-slate-900">
+    <body class="min-h-screen bg-neutral-50 text-brand-black">
         @php
             $userRole = strtolower(trim(auth()->user()?->role?->name ?? ''));
             $userRole = match ($userRole) {
@@ -23,21 +23,28 @@
                 'planner' => ['label' => 'Planner', 'tabs' => ['Dashboard', 'Planning', 'Afspraken', 'Storingen']],
             ];
             $navigation = $roleNavigation[$userRole] ?? null;
+
+            // Tabs die al een eigen pagina hebben; de rest linkt voorlopig naar '#'.
+            $tabRoutes = [
+                'Dashboard' => 'dashboard',
+                'Storingen' => 'fault-reports.index',
+            ];
         @endphp
 
-        <aside class="fixed inset-y-0 left-0 z-40 flex w-[202px] flex-col border-r border-slate-200 bg-white">
+        <aside class="fixed inset-y-0 left-0 z-40 flex w-[202px] flex-col border-r-[3px] border-brand-yellow bg-white">
             <div class="flex h-[119px] flex-col justify-center px-3">
-                <a href="{{ route('dashboard') }}" class="block" wire:navigate>
-                    <span class="block text-[16px] font-black leading-none tracking-tight text-slate-950">BARROC INTENS</span>
-                    <span class="mt-3 block text-[10px] font-bold uppercase leading-none text-slate-950">Vlamend lekkere koffie</span>
+                <a href="{{ route('dashboard') }}" class="block" wire:navigate aria-label="Barroc Intens">
+                    <span class="block font-logo text-[30px] leading-[0.95] text-brand-black">Barroc<br>Intens</span>
+                    <span class="mt-2 block text-[10px] font-bold uppercase leading-none text-brand-black">Vlamend lekkere koffie</span>
                 </a>
             </div>
 
             <nav class="overflow-y-auto px-[14px]" aria-label="Hoofdnavigatie">
                 @foreach ($navigation['tabs'] ?? [] as $tab)
-                    <a href="{{ $tab === 'Dashboard' ? route('dashboard') : '#' }}"
-                       class="flex h-10 items-center px-2.5 text-[13px] {{ $tab === 'Dashboard' && request()->routeIs('dashboard') ? 'rounded-md bg-[#e7edf8] text-[#6d7d96]' : 'text-slate-800 hover:bg-slate-50' }}"
-                       @if ($tab === 'Dashboard') wire:navigate @endif>
+                    @php($tabRoute = $tabRoutes[$tab] ?? null)
+                    <a href="{{ $tabRoute ? route($tabRoute) : '#' }}"
+                       class="flex h-10 items-center rounded-md border px-2.5 text-[13px] {{ $tabRoute && request()->routeIs($tabRoute) ? 'border-brand-yellow bg-white font-semibold text-brand-yellow-dark' : 'border-transparent text-brand-black hover:bg-brand-yellow-light' }}"
+                       @if ($tabRoute) wire:navigate @endif>
                         {{ $tab }}
                     </a>
                 @endforeach
@@ -46,11 +53,11 @@
             @if ($navigation)
                 <div class="mt-auto border-t border-slate-100 px-[22px] pb-[42px] pt-[31px]">
                     <details class="group relative">
-                        <summary class="flex h-[34px] cursor-pointer list-none items-center justify-center rounded-full bg-[#0f9bf0] text-[10px] font-extrabold uppercase text-white [&::-webkit-details-marker]:hidden">
+                        <summary class="flex h-[34px] cursor-pointer list-none items-center justify-center rounded-full bg-brand-yellow text-[10px] font-extrabold uppercase text-brand-black [&::-webkit-details-marker]:hidden">
                             {{ $navigation['label'] }}
                         </summary>
 
-                        <div class="absolute bottom-[44px] left-0 w-[158px] rounded-lg border border-black bg-white p-3 shadow-lg">
+                        <div class="absolute bottom-full left-0 mb-2 w-[158px] rounded-lg border border-black bg-white p-3 shadow-lg">
                             <div class="min-w-0">
                                 <div class="truncate text-[13px] font-bold text-slate-900">
                                     {{ auth()->user()->name }}
@@ -58,7 +65,7 @@
                                 <div class="mt-0.5 truncate text-[11px] text-slate-500">
                                     {{ auth()->user()->email }}
                                 </div>
-                                <div class="mt-2 text-[10px] font-bold uppercase text-[#0f9bf0]">
+                                <div class="mt-2 text-[10px] font-bold uppercase text-brand-yellow-dark">
                                     {{ $navigation['label'] }}
                                 </div>
                             </div>
