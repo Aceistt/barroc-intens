@@ -32,6 +32,10 @@
                 'Planning' => 'planning.index',
                 'Taken' => 'tasks.index',
                 'Berichten' => 'messages.index',
+                'Facturen' => 'invoices.index',
+                'Betalingen' => 'payments.index',
+                'Rapportages' => 'reports.index',
+                'Meldingen' => 'notifications.index',
             ];
         @endphp
 
