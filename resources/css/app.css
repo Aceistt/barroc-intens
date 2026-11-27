@@ -23,6 +23,14 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
+    --font-logo: 'Pathway Gothic One', 'Arial Narrow', ui-sans-serif, sans-serif;
+
+    /* Barroc Intens huisstijl: zwart, geel en wit. */
+    --color-brand-yellow: #ffd200;
+    --color-brand-yellow-dark: #e0b400;
+    --color-brand-yellow-light: #fff8d6;
+    --color-brand-black: #111111;
+
     --color-accent: var(--color-neutral-800);
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
@@ -58,7 +66,7 @@
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+    @apply outline-hidden ring-2 ring-brand-yellow ring-offset-2 ring-offset-accent-foreground;
 }
 
 /* \[:where(&)\]:size-4 {

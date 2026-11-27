@@ -16,6 +16,10 @@ export default defineConfig({
                 bunny('Instrument Sans', {
                     weights: [400, 500, 600],
                 }),
+                // Smal lettertype voor het Barroc Intens-logo.
+                bunny('Pathway Gothic One', {
+                    weights: [400],
+                }),
             ],
         }),
         tailwindcss(),
