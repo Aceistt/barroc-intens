@@ -45,9 +45,36 @@
 
             @if ($navigation)
                 <div class="mt-auto border-t border-slate-100 px-[22px] pb-[42px] pt-[31px]">
-                    <div class="flex h-[34px] items-center justify-center rounded-full bg-[#0f9bf0] text-[10px] font-extrabold uppercase text-white">
-                        {{ $navigation['label'] }}
-                    </div>
+                    <details class="group relative">
+                        <summary class="flex h-[34px] cursor-pointer list-none items-center justify-center rounded-full bg-[#0f9bf0] text-[10px] font-extrabold uppercase text-white [&::-webkit-details-marker]:hidden">
+                            {{ $navigation['label'] }}
+                        </summary>
+
+                        <div class="absolute bottom-[44px] left-0 w-[158px] rounded-lg border border-black bg-white p-3 shadow-lg">
+                            <div class="min-w-0">
+                                <div class="truncate text-[13px] font-bold text-slate-900">
+                                    {{ auth()->user()->name }}
+                                </div>
+                                <div class="mt-0.5 truncate text-[11px] text-slate-500">
+                                    {{ auth()->user()->email }}
+                                </div>
+                                <div class="mt-2 text-[10px] font-bold uppercase text-[#0f9bf0]">
+                                    {{ $navigation['label'] }}
+                                </div>
+                            </div>
+
+                            <form method="POST" action="{{ route('logout') }}" class="mt-3 border-t border-slate-100 pt-2">
+                                @csrf
+                                <button
+                                    type="submit"
+                                    class="w-full cursor-pointer rounded-md px-2 py-1.5 text-left text-[12px] font-semibold text-red-600 hover:bg-red-50"
+                                    data-test="logout-button"
+                                >
+                                    Uitloggen
+                                </button>
+                            </form>
+                        </div>
+                    </details>
                 </div>
             @endif
         </aside>
