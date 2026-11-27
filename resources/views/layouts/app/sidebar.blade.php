@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        @include('partials.head')
+        @include('partials.head', ['lightOnly' => true])
     </head>
     <body class="min-h-screen bg-neutral-50 text-brand-black">
         @php
@@ -28,6 +28,10 @@
             $tabRoutes = [
                 'Dashboard' => 'dashboard',
                 'Storingen' => 'fault-reports.index',
+                'Werkbonnen' => 'work-orders.index',
+                'Planning' => 'planning.index',
+                'Taken' => 'tasks.index',
+                'Berichten' => 'messages.index',
             ];
         @endphp
 

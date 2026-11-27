@@ -12,4 +12,8 @@
 @fonts
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
-@fluxAppearance
+
+{{-- De app gebruikt alleen de lichte huisstijl; zonder dit script zet Flux geen 'dark' op de pagina. --}}
+@unless ($lightOnly ?? false)
+    @fluxAppearance
+@endunless
