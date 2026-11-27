@@ -1,0 +1,318 @@
+// ERD Barroc Intens - Xander
+// Plak dit bestand in https://dbdiagram.io om het diagram te bekijken/exporteren.
+// Gebaseerd op: P_E3_Barroc-Intens_v3-6.pdf, "De klant vertelt", Interviewverslag,
+// USERSTORIES.md en de bestaande Laravel-migraties (roles, users).
+
+// ───────────── Gebruikers & rollen ─────────────
+
+Table roles {
+  id bigint [pk, increment]
+  name varchar(255) [unique, not null, note: 'Admin, Finance, Sales, Inkoop, Maintenance, Planner']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table users {
+  id bigint [pk, increment]
+  role_id bigint [not null, ref: > roles.id]
+  name varchar(255) [not null]
+  email varchar(255) [unique, not null]
+  telephone varchar(25)
+  password varchar(255) [not null]
+  is_head boolean [not null, default: false, note: 'Hoofd van afdeling (bv. hoofd Maintenance); mag grote inkopen goedkeuren']
+  is_active boolean [not null, default: true]
+  created_at timestamp
+  updated_at timestamp
+}
+
+// ───────────── Klanten (Sales / CRM) ─────────────
+
+Table customers {
+  id bigint [pk, increment]
+  company_name varchar(255) [not null]
+  contact_person varchar(255)
+  email varchar(255)
+  telephone varchar(25)
+  kvk_number varchar(20)
+  billing_street varchar(255) [note: 'Eén centraal adres (US29)']
+  billing_postal_code varchar(10)
+  billing_city varchar(100)
+  bkr_checked boolean [not null, default: false, note: 'Vinkje: Finance heeft de BKR-check uitgevoerd']
+  bkr_registered boolean [not null, default: false, note: 'Klant staat geregistreerd bij BKR -> geen contract']
+  bkr_checked_by_user_id bigint [ref: > users.id]
+  bkr_checked_at timestamp
+  is_active boolean [not null, default: true]
+  created_by_user_id bigint [ref: > users.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table customer_locations {
+  id bigint [pk, increment]
+  customer_id bigint [not null, ref: > customers.id]
+  name varchar(100) [note: 'bv. "Vestiging Breda"']
+  street varchar(255) [not null]
+  postal_code varchar(10) [not null]
+  city varchar(100) [not null]
+  notes text [note: 'Toegang/bereikbaarheid voor monteur']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table customer_notes {
+  id bigint [pk, increment]
+  customer_id bigint [not null, ref: > customers.id]
+  user_id bigint [not null, ref: > users.id]
+  type note_type [not null]
+  content text [not null]
+  appointment_at datetime [note: 'Alleen bij type = afspraak']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Enum note_type {
+  note
+  appointment
+}
+
+// ───────────── Producten & voorraad (Inkoop) ─────────────
+
+Table product_categories {
+  id bigint [pk, increment]
+  name varchar(100) [unique, not null, note: 'Koffiemachines, Koffiebonen, Onderdelen, ...']
+  is_customer_visible boolean [not null, default: true, note: 'Onderdelen alleen zichtbaar voor medewerkers']
+}
+
+Table products {
+  id bigint [pk, increment]
+  product_category_id bigint [not null, ref: > product_categories.id]
+  product_code varchar(50) [unique, not null]
+  name varchar(255) [not null]
+  brand varchar(100)
+  description text
+  price decimal(10,2) [not null, note: 'Leaseprijs per maand (machine) of verkoopprijs (bonen/onderdeel)']
+  stock_quantity int [not null, default: 0]
+  minimum_stock int [not null, default: 0, note: 'Onder dit aantal -> bijbestellen']
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp [note: 'Soft delete: oude offertes/werkbonnen blijven kloppen']
+}
+
+Table purchase_orders {
+  id bigint [pk, increment]
+  ordered_by_user_id bigint [not null, ref: > users.id]
+  approved_by_user_id bigint [ref: > users.id, note: 'Verplicht bij > 5000 producten']
+  order_number varchar(50) [unique, not null]
+  status purchase_order_status [not null]
+  ordered_at timestamp
+  approved_at timestamp
+  received_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Enum purchase_order_status {
+  concept
+  awaiting_approval
+  approved
+  rejected
+  ordered
+  received
+}
+
+Table purchase_order_lines {
+  id bigint [pk, increment]
+  purchase_order_id bigint [not null, ref: > purchase_orders.id]
+  product_id bigint [not null, ref: > products.id]
+  quantity int [not null]
+  unit_price decimal(10,2) [not null]
+}
+
+// ───────────── Offertes & contracten (Sales / Finance) ─────────────
+
+Table quotes {
+  id bigint [pk, increment]
+  customer_id bigint [not null, ref: > customers.id]
+  customer_location_id bigint [ref: > customer_locations.id, note: 'Afleveradres van de machine(s)']
+  user_id bigint [not null, ref: > users.id, note: 'Sales-medewerker']
+  quote_number varchar(50) [unique, not null]
+  status quote_status [not null]
+  with_maintenance_contract boolean [not null, default: false]
+  valid_until date
+  sent_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Enum quote_status {
+  concept
+  sent
+  accepted
+  rejected
+  expired
+}
+
+Table quote_lines {
+  id bigint [pk, increment]
+  quote_id bigint [not null, ref: > quotes.id]
+  product_id bigint [not null, ref: > products.id]
+  quantity int [not null]
+  unit_price decimal(10,2) [not null, note: 'Prijs vastgelegd op moment van offerte']
+}
+
+Table lease_contracts {
+  id bigint [pk, increment]
+  customer_id bigint [not null, ref: > customers.id]
+  quote_id bigint [unique, ref: - quotes.id, note: 'Geaccepteerde offerte waar het contract uit komt']
+  contract_number varchar(50) [unique, not null]
+  start_date date [not null]
+  end_date date
+  with_maintenance_contract boolean [not null, default: false]
+  monthly_amount decimal(10,2) [not null]
+  status contract_status [not null]
+  signed_at timestamp [note: 'Digitaal ondertekend door klant']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Enum contract_status {
+  concept
+  active
+  ended
+  cancelled
+}
+
+Table lease_contract_lines {
+  id bigint [pk, increment]
+  lease_contract_id bigint [not null, ref: > lease_contracts.id]
+  product_id bigint [not null, ref: > products.id, note: 'Apparaat of bonen']
+  quantity int [not null]
+  unit_price decimal(10,2) [not null]
+}
+
+// Fysieke, geïnstalleerde machine bij een klant
+Table machines {
+  id bigint [pk, increment]
+  product_id bigint [not null, ref: > products.id]
+  lease_contract_id bigint [not null, ref: > lease_contracts.id]
+  customer_location_id bigint [not null, ref: > customer_locations.id, note: 'Waar staat de machine']
+  serial_number varchar(100) [unique, not null]
+  installed_at date
+  delivery_signed_at timestamp [note: 'Levering afgetekend door klant']
+  created_at timestamp
+  updated_at timestamp
+}
+
+// ───────────── Facturatie (Finance) ─────────────
+
+Table invoices {
+  id bigint [pk, increment]
+  customer_id bigint [not null, ref: > customers.id]
+  lease_contract_id bigint [ref: > lease_contracts.id]
+  invoice_number varchar(50) [unique, not null]
+  invoice_date date [not null]
+  due_date date [not null]
+  total_amount decimal(10,2) [not null]
+  status invoice_status [not null]
+  paid_at timestamp [note: 'Op betaald zetten']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Enum invoice_status {
+  concept
+  sent
+  paid
+  overdue
+}
+
+Table invoice_lines {
+  id bigint [pk, increment]
+  invoice_id bigint [not null, ref: > invoices.id]
+  product_id bigint [ref: > products.id]
+  description varchar(255) [not null]
+  quantity int [not null]
+  unit_price decimal(10,2) [not null]
+}
+
+Table payment_reminders {
+  id bigint [pk, increment]
+  invoice_id bigint [not null, ref: > invoices.id]
+  reminder_number tinyint [not null, note: '1 of 2 (verdere afhandeling buiten de applicatie)']
+  sent_at timestamp [not null]
+
+  indexes {
+    (invoice_id, reminder_number) [unique]
+  }
+}
+
+// ───────────── Storingen, planning & werkbonnen (Maintenance / Planner) ─────────────
+
+Table fault_reports {
+  id bigint [pk, increment]
+  customer_id bigint [not null, ref: > customers.id]
+  machine_id bigint [ref: > machines.id]
+  reported_by_user_id bigint [not null, ref: > users.id, note: 'Sales-medewerker die de storing aanmaakt']
+  title varchar(255) [not null]
+  description text [not null, note: 'Duidelijke probleemomschrijving -> juiste materialen meenemen']
+  priority priority [not null, default: 'normal']
+  status fault_status [not null, default: 'new']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Enum priority {
+  low
+  normal
+  high
+  urgent
+}
+
+Enum fault_status {
+  new
+  scheduled
+  in_progress
+  resolved
+  closed
+}
+
+// Een werkbon = één ingepland bezoek (storing of routine-onderhoud)
+Table work_orders {
+  id bigint [pk, increment]
+  type work_order_type [not null]
+  fault_report_id bigint [ref: > fault_reports.id, note: 'Alleen bij type = storing']
+  machine_id bigint [not null, ref: > machines.id]
+  technician_user_id bigint [ref: > users.id, note: 'Gekoppelde monteur (US22)']
+  planned_by_user_id bigint [ref: > users.id, note: 'Planner']
+  scheduled_start datetime [note: 'Kalender (US21/US23)']
+  scheduled_end datetime
+  status work_order_status [not null, default: 'planned']
+  work_performed text [note: 'Ingevuld door monteur na bezoek']
+  started_at timestamp
+  finished_at timestamp
+  hours_spent decimal(5,2) [note: 'Bestede tijd']
+  customer_signature text [note: 'Digitale handtekening (base64 of pad)']
+  signed_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Enum work_order_type {
+  routine
+  storing
+}
+
+Enum work_order_status {
+  planned
+  in_progress
+  completed
+  cancelled
+}
+
+Table work_order_materials {
+  id bigint [pk, increment]
+  work_order_id bigint [not null, ref: > work_orders.id]
+  product_id bigint [not null, ref: > products.id]
+  quantity int [not null]
+  seen_by_purchasing_at timestamp [note: 'Melding aan Inkoop afgehandeld (US27)']
+}
