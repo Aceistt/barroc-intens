@@ -50,7 +50,7 @@
                             {{ $navigation['label'] }}
                         </summary>
 
-                        <div class="absolute bottom-[44px] left-0 w-[158px] rounded-lg border border-black bg-white p-3 shadow-lg">
+                        <div class="absolute bottom-full left-0 mb-2 w-[158px] rounded-lg border border-black bg-white p-3 shadow-lg">
                             <div class="min-w-0">
                                 <div class="truncate text-[13px] font-bold text-slate-900">
                                     {{ auth()->user()->name }}
