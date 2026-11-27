@@ -55,7 +55,7 @@ class TestAccsSeeder extends Seeder
                 );
             }
 
-            User::firstOrCreate(
+            $user = User::firstOrCreate(
                 ['email' => $account['email']],
                 [
                     'name' => $account['name'],
@@ -64,6 +64,11 @@ class TestAccsSeeder extends Seeder
                     'role_id' => $role->id,
                 ]
             );
+
+            // Testaccounts direct als geverifieerd markeren, anders blokkeert de 'verified'-middleware ze.
+            if ($user->wasRecentlyCreated) {
+                $user->forceFill(['email_verified_at' => now()])->save();
+            }
         }
     }
 }

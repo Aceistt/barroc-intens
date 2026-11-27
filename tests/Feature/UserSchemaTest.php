@@ -90,6 +90,13 @@ class UserSchemaTest extends TestCase
         $this->assertDatabaseCount('fault_reports', 18);
     }
 
+    public function test_seeded_demo_accounts_are_email_verified(): void
+    {
+        $this->seed(DatabaseSeeder::class);
+
+        $this->assertSame(0, User::whereNull('email_verified_at')->count());
+    }
+
     public function test_admin_seeder_does_not_promote_or_overwrite_an_existing_account(): void
     {
         $user = User::factory()->create(['email' => 'admin@example.com']);

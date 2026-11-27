@@ -28,7 +28,7 @@ class AdminSeeder extends Seeder
         }
 
         // Bestaande accounts mogen niet worden gepromoveerd of overschreven.
-        User::firstOrCreate(
+        $admin = User::firstOrCreate(
             ['email' => 'admin@example.com'],
             [
                 'name' => 'Admin',
@@ -37,5 +37,10 @@ class AdminSeeder extends Seeder
                 'role_id' => $adminRoleId,
             ]
         );
+
+        // Demo-account direct als geverifieerd markeren, anders blokkeert de 'verified'-middleware het.
+        if ($admin->wasRecentlyCreated) {
+            $admin->forceFill(['email_verified_at' => now()])->save();
+        }
     }
 }
